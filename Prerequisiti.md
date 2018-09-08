@@ -6,6 +6,8 @@ Per eseguire le demo prosentate durante la sessione, sono necessari i seguenti p
 
 * Il pacchetto [OpenSSH](https://help.ubuntu-it.org/6.06/ubuntu/serverguide/it/openssh-server.html) [[Windows](https://chocolatey.org/packages/openssh)] installato nel proprio sistema;
 
+* Il pacchetto Powershell 6 Core [[Windows](https://docs.microsoft.com/it-it/powershell/scripting/setup/installing-powershell-core-on-windows?view=powershell-6), [Linux](https://docs.microsoft.com/it-it/powershell/scripting/setup/installing-powershell-core-on-linux?view=powershell-6), [MacOS](https://docs.microsoft.com/it-it/powershell/scripting/setup/installing-powershell-core-on-macos?view=powershell-6)] installato nel proprio sistema.
+
 * Il pacchetto [Vagrant](https://www.vagrantup.com/) [installato](https://www.vagrantup.com/downloads.html) e utilizzabile;
 
 * Il [necessario per pilotare](https://www.vagrantup.com/docs/providers/) l'Hypervisor tramite Vagrant;
