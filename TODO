@@ -1,11 +1,14 @@
-01_Module:
-  ☐ Slide1
-  ☐ Slide2
-02_Module:
-  ☐ Slide1
-  ☐ Slide2
-03_Module:
-  ☐ Slide1
-  ☐ Slide2
-  ☐ Slide3
-  
+Bash:
+  ☐ Introduzione
+  ☐ Definizione dell'obiettivo
+  ☐ costruzione dell'algoritmo
+  ☐ 
+Powershell:
+  ☐ Introduzione
+  ☐ Definizione dell'obiettivo
+Vagrant/Ruby:
+  ☐ Introduzione
+  ☐ Definizione dell'obiettivo
+Python:
+  ☐ Introduzione
+  ☐ Definizione dell'obiettivo
