@@ -1,3 +1,5 @@
+[comment]: cSpell:disable
+
 # Prerequisiti
 
 Per eseguire le demo prosentate durante la sessione, sono necessari i seguenti prerequisiti:
