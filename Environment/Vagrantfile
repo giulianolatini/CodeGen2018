@@ -1,8 +1,17 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
+require 'rbconfig'
 require 'yaml'
 
-OSArch = ENV["VM_OS_ARCH"] || 'linux.yml'
+CWD = File.dirname(File.expand_path(__FILE__))
+
+VM_ARCH_DEFINITION_FILE = [ENV["VM_ARCH"] || 'linux','yml'].join('.')
+VM_ARCH_SECRETS_FILE = [ENV["VM_SECRETS"] || 'secrets','yml'].join('.')
+
+
+VMArch = YAML.load_file(File.join(CWD, VM_ARCH_DEFINITION_FILE))
+VMSecrets = YAML.load_file(File.join(CWD, VM_ARCH_SECRETS_FILE))
+
 # All Vagrant configuration is done below. The "2" in Vagrant.configure
 # configures the configuration version (we support older styles for
 # backwards compatibility). Please don't change it unless you know what
@@ -14,8 +23,45 @@ Vagrant.configure("2") do |config|
 
   # Every Vagrant development environment requires a box. You can search for
   # boxes at https://vagrantcloud.com/search.
-  config.vm.box = "generic/ubuntu1604"
+  config.vm.box = VMArch["vagrant_box"]
+  config.vm.define VMArch["vagrant_name"]
+  config.vm.guest = VMArch["vagrant_os"]
+  config.vm.communicator = VMArch["vm_communicator"]
+  config.vm.network "forwarded_port", guest: 8011, host: 8080, auto_correct: true
+  #config.vm.network "forwarded_port", guest: 8011, host: 8011
+  #config.vm.network "forwarded_port", guest: 8012, host: 8012
+  
+  #config.ssh.insert_key = true
+  #config.ssh.username = 'root'
+  #config.ssh.password = 'vagrant'
+  #config.ssh.private_key_path = ["../Keys/PrivateKey/privatekey06112017"]
+	
+  config.vm.provider VMArch["vagrant_provider"]
+  config.vm.network VMArch["vagrant_network"], bridge: VMArch["vagrant_bridge"] 
+  # config.vm.synced_folder "../TRepo", "/home/dev/html/TRepo", 
+  #     create: true, mount_options: ["vers=3.0"]
 
+  config.vm.synced_folder ".", "/vagrant", 
+      type: "smb", 
+      smb_username: "#{VMSecrets["SMB"]["username"]}",
+      smb_password: "#{VMSecrets["SMB"]["password"]}",
+      mount_options: [ 
+        "username=#{VMSecrets["SMB"]["username"]}",
+        "password=#{VMSecrets["SMB"]["password"]}",
+        "vers=3.0" 
+      ]
+
+  config.vm.provider "hyperv" do |h|
+    h.vmname = VMArch["machine_name"]
+    h.maxmemory = VMArch["machine_ram"]
+    h.cpus = VMArch["machine_cpu"]
+    h.enable_virtualization_extensions = true
+    h.linked_clone = true
+
+    # h.vm_integration_services = {
+    #   guest_service_interface: true  #<---------- this line enables Copy-VMFile
+    # }
+  end
   # Disable automatic box update checking. If you disable this, then
   # boxes will only be checked for updates when the user runs
   # `vagrant box outdated`. This is not recommended.
