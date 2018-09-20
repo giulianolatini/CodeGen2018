@@ -1,7 +1,6 @@
 {
   "yaml.schemas": {
-    "file:///C:\\Users\\latin\\.vscode\\extensions\\gizmos.docs-yaml-0.1.6\\schemas": "toc.yml",
-    "file:///C:\\Users\\latin\\.vscode\\extensions\\gizmos.docs-yaml-0.1.6\\schemas\\toc.schema.json": "/toc\\.yml/i"
+    "file:///C:\\Users\\latin\\.vscode\\extensions\\gizmos.docs-yaml-0.1.6\\schemas": "toc.yml"
   },
   "cSpell.language": "en"
 }
