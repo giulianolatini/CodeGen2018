@@ -78,7 +78,7 @@ Vagrant.configure("2") do |config|
   #config.ssh.password = 'vagrant'
   #config.ssh.private_key_path = ["../Keys/PrivateKey/privatekey06112017"]
 	
-  config.vm.provider VMArch["vagrant_provider"]
+
   config.vm.network VMArch["vagrant_network"], bridge: VMArch["vagrant_bridge"] 
 
   config.vm.synced_folder ".", "/vagrant", 
@@ -91,7 +91,7 @@ Vagrant.configure("2") do |config|
         "vers=3.0" 
       ]
 
-  config.vm.provider "hyperv" do |h|
+  config.vm.provider VMArch["vagrant_provider"] do |h|
     h.vmname = VMArch["machine_name"]
     h.maxmemory = VMArch["machine_ram"]
     h.cpus = VMArch["machine_cpu"]
