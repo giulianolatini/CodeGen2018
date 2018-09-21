@@ -35,6 +35,7 @@ Vagrant.configure("2") do |config|
   $script = <<-SCRIPT
     apt-get update
     apt-get -y upgrade
+    apt-get -y install redis-server
     apt-get -y install python-pip
     pip install testinfra
     pip install --upgrade testinfra
